@@ -8,7 +8,17 @@ const App = () => {
   return (
     <>
       <h1>Tic Tac Toe</h1>
+      <div className="grid">
       <Square />
+      <Square />
+      <Square />
+      <Square />
+      <Square />
+      <Square />
+      <Square />
+      <Square />
+      <Square />
+      </div>
     </>
   )
 }
