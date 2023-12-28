@@ -1,32 +1,39 @@
 import { useState } from 'react';
 
 // this function is created to centralize the contolling of each tile in the square
-function Tile() {  // indicates that the Tile component can be passed a prop
-  const [value, setValue] = useState(null); // "value" stores the value and "setValue" is a function that can be used to change the value. useState(null) makes it so the value starts at null
-  
-  function handleClick() { 
-    setValue('X');
-  }
-  return <button className="square" onClick={handleClick}>{value}</button>
+function Tile({ value, onSquareClick }) {  // indicates that the Tile component can be passed a prop
+  return <button className="square" onClick={onSquareClick}>{value}</button>
 }
 
 const Square = () => {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null)) // each entry in the array corresponds to the value of a square
+  function handleClick(i) {
+    const nextSquares = squares.slice();
+    if (xIsNext) {
+      nextSquares[i] = "X";
+    } else {
+      nextSquares[i] = "O";
+    }
+    setSquares(nextSquares);
+    setXIsNext(!xIsNext);
+  }
   return (
     <>
       <div className="tile-row"> {/* groups each component into rows*/}
-        <Tile />
-        <Tile />
-        <Tile />
+        <Tile value={squares[0]} onSquareClick={() => handleClick(0)} />
+        <Tile value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <Tile value={squares[2]} onSquareClick={() => handleClick(2)} />
       </div>
       <div className="tile-row"> 
-        <Tile />
-        <Tile />
-        <Tile />
+        <Tile value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Tile value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Tile value={squares[5]} onSquareClick={() => handleClick(5)} />
       </div>
       <div className="tile-row"> 
-        <Tile />
-        <Tile />
-        <Tile />
+        <Tile value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Tile value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Tile value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
     </>
   );
