@@ -9,6 +9,9 @@ const Square = () => {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null)) // each entry in the array corresponds to the value of a square
   function handleClick(i) {
+    if (squares[i]) { // prevents another mark on a tile thats already marked
+      return;
+    }
     const nextSquares = squares.slice();
     if (xIsNext) {
       nextSquares[i] = "X";
