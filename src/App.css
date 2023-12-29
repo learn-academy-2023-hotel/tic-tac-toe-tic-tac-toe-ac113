@@ -2,4 +2,8 @@
   border: 2px solid black;
   height: 100px;
   width: 100px;
+  align-items: center;
+}
+.tile-row {
+  display: flex;
 }
