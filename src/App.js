@@ -1,4 +1,5 @@
 import Square from './components/Square'
+import Reset from './components/Reset'
 import './App.css'
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
     <>
       <h1>Tic Tac Toe</h1>
       <Square />
+      <button onClick={Reset}>Restart Game</button>
     </>
   )
 }

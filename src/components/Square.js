@@ -5,6 +5,7 @@ function Tile({ value, onTileClick }) {  // indicates that the props: 'value' an
   return <button className="square" onClick={onTileClick}>{value}</button> // 'onTileClick' is an 'onClick' function that tile component calls on when it is clicked.
 }  // renders a button and sets its 'onClick' event o the 'onTileClick' function. The button displays the value prop.
 
+
 const Square = () => {  // a functional component where all the features of the tiles will be housed (in the square)
   const [xIsNext, setXIsNext] = useState(true); // a boolean (true/false) that indicates if it is X's turn
   const [tiles, setTiles] = useState(Array(9).fill(null)) // an array representing the state of each tile in the square
@@ -12,15 +13,16 @@ const Square = () => {  // a functional component where all the features of the 
     if (tiles[i] || calculateWinner(tiles)) { // prevents another mark on a tile thats already marked || or if there is a winner using the 'calculateWinner' function
       return; 
     }
-    const nextTile = tiles.slice(); //the .slice is used to create a new array instead of overwriting the base array to maintain reusablility
+    const nextTiles = tiles.slice(); //the .slice is used to create a new array instead of overwriting the base array to maintain reusablility
     if (xIsNext) {
-      nextTile[i] = "X";
+      nextTiles[i] = "X";
     } else {
-      nextTile[i] = "O";
-    }
-    setTiles(nextTile);
-    setXIsNext(!xIsNext);
+      nextTiles[i] = "O";
+    } // the value at index 'i' in nextTiles is set to X or O based on the current player's turn
+    setTiles(nextTiles); // 'nextTiles' array is set as the new state for 'tiles using 'setTiles'
+    setXIsNext(!xIsNext); // this function is used to switch to the next players turn
   }
+
   const winner = calculateWinner(tiles);
   let status;
   if (winner) {
@@ -47,6 +49,7 @@ const Square = () => {  // a functional component where all the features of the 
     }
     return null;
   }
+
   
   return (
     <>

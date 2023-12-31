@@ -65,7 +65,7 @@ There is an interesting approach to the [Tic Tac Toe win condition in React](htt
 ✅ As a user, when either my partner or I win the game (three squares in a row: horizontally, vertically, or diagonally), I can see a notice telling me which player won.
 ✅ As a user, I can't play the game after the game has been won.
 - As a user, if no more squares are available, I can see a notice telling me that the game has ended.
-- As a user, I can click on a restart button that will clear the game board.
+✅ As a user, I can click on a restart button that will clear the game board.
 
 ### 🏔 Stretch Goals
 
