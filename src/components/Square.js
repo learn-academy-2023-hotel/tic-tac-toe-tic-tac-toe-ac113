@@ -10,7 +10,7 @@ const Square = () => {  // a functional component where all the features of the 
   const [xIsNext, setXIsNext] = useState(true); // a boolean (true/false) that indicates if it is X's turn
   const [tiles, setTiles] = useState(Array(9).fill(null)) // an array representing the state of each tile in the square
   function handleClick(i) { // function is called whenever a tile is clicked
-    if (tiles[i] || calculateWinner(tiles)) { // prevents another mark on a tile thats already marked || or if there is a winner using the 'calculateWinner' function
+    if (tiles[i] || calculateWinner(tiles) || isBoardFull()){ // prevents another mark on a tile thats already marked || or if there is a winner using the 'calculateWinner' function
       return; 
     }
     const nextTiles = tiles.slice(); //the .slice is used to create a new array instead of overwriting the base array to maintain reusablility
@@ -24,10 +24,14 @@ const Square = () => {  // a functional component where all the features of the 
   }
 
   const winner = calculateWinner(tiles);
+  const isFull = isBoardFull();
   let status;
   if (winner) {
    status = "Winner: " + winner;
-  } else {
+  } else if (isFull){
+    status = "It's a draw!!";
+  } 
+  else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
   function calculateWinner(tiles) {
@@ -49,7 +53,9 @@ const Square = () => {  // a functional component where all the features of the 
     }
     return null;
   }
-
+  function isBoardFull() {
+    return tiles.every(tile => tile !== null);
+  }
   
   return (
     <>
